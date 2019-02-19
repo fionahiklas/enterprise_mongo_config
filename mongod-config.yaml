@@ -1,0 +1,21 @@
+systemLog:
+  destination: file
+  path: "./mongo-system.log"
+  logAppend: true
+
+storage: 
+  dbPath: "./mongodb"
+  journal:
+    enabled: true
+
+processManagement: 
+  fork: true
+
+net:
+  bindIp: 127.0.0.1
+  port: 27717
+  ssl:
+    mode: requireSSL
+    PEMKeyFile: "mongoserver-key-crt.pem"
+
+

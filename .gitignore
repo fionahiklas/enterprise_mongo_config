@@ -1,0 +1,7 @@
+# Database directory
+mongodb
+
+# Log files
+*.log
+
+
