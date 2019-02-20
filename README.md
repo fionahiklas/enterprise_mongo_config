@@ -1,3 +1,4 @@
+
 ## Overview
 
 Configuration and setup for an Enterprise Mongo Server using SSL certificates
@@ -17,10 +18,10 @@ start the server with the following command
 /opt/mongodb-linux-x86_64-enterprise-ubuntu1804-4.0.6/bin/mongod --config ./mongod-config.yaml
 ```
 
-Connect to the server using the command line client
+Connect to the server using the command line client (from the `enterprise_mongo_client` directory) 
 
 ```
-mongo --ssl --port 27717 --host mongoserver admin --verbose --sslCAFile enterprise_mongo_ca/pki/ca.crt
+mongo --ssl --port 27717 --host mongoserver admin --verbose --sslCAFile ../enterprise_mongo_ca/pki/ca.crt --sslPEMKeyFile mongoclient-key-crt.pem
 ```
 
 
@@ -38,5 +39,13 @@ git clone git@gitlab.mgmt.exchange:fiona.bianchi/enterprise_mongo_client.git
 ```
 
 ### SSL
+
+Use the unencrypted key for the server and the signed certificate and concatenate to produce a single
+file, e.g.
+
+```
+cat ../enterprise_mongo_server/pki/private/mongoserver.key ../enterprise_mongo_ca/pki/issued/mongoserver.crt > mongoserver-key-crt.pem 
+```
+
 
 

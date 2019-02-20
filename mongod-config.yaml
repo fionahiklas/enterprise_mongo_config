@@ -1,3 +1,4 @@
+
 systemLog:
   destination: file
   path: "./mongo-system.log"
@@ -17,5 +18,5 @@ net:
   ssl:
     mode: requireSSL
     PEMKeyFile: "mongoserver-key-crt.pem"
-
+    CAFile: "../enterprise_mongo_ca/pki/ca.crt" 
 
