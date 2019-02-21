@@ -20,3 +20,6 @@ net:
     PEMKeyFile: "mongoserver-key-crt.pem"
     CAFile: "../enterprise_mongo_ca/pki/ca.crt" 
 
+security:
+  authorization: enabled
+  
