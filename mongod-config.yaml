@@ -22,4 +22,8 @@ net:
 
 security:
   authorization: enabled
+  enableEncryption: true
+  encryptionKeyFile: /home/fiona/wd/dwp/cis/mongo_enterprise_ssl/enterprise_mongo_config/mongod-keyfile
+
+
   
