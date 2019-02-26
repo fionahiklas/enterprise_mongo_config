@@ -12,6 +12,11 @@ Add/edit an entry for "mongoserver" in the `/etc/hosts` file
 ```
 
 Ensure that there is a directory called `mongodb` in the current folder,
+
+```
+mkdir mongodb
+```
+
 start the server with the following command
 
 ```
@@ -23,6 +28,16 @@ Connect to the server using the command line client (from the `enterprise_mongo_
 ```
 mongo --ssl --port 27717 --host mongoserver admin --verbose --sslCAFile ../enterprise_mongo_ca/pki/ca.crt --sslPEMKeyFile mongoclient-key-crt.pem
 ```
+
+You must create the admin account ASAP once connected to the Mongo server, see the instructions below.  Once
+created, exit the connection and start again with the following command
+
+```
+mongo --ssl --port 27717 --host mongoserver admin --verbose --sslCAFile ../enterprise_mongo_ca/pki/ca.crt --sslPEMKeyFile mongoclient-key-crt.pem -u admin -p adminpassword
+```
+
+You can now proceed to create other schema elements.  
+
 
 
 ## Configuration
@@ -46,6 +61,28 @@ file, e.g.
 ```
 cat ../enterprise_mongo_server/pki/private/mongoserver.key ../enterprise_mongo_ca/pki/issued/mongoserver.crt > mongoserver-key-crt.pem 
 ```
+
+### Encryption
+
+#### Using a file
+
+You can create a key for encryption using the following command
+
+```
+openssl rand -base64 32 > mongod-keyfile
+```
+
+The configuration file then needs an entry such as this
+
+```
+security:
+  authorization: enabled
+  enableEncryption: true
+  encryptionKeyFile: /home/fiona/wd/dwp/cis/mongo_enterprise_ssl/enterprise_mongo_config/mongod-keyfile
+```
+
+It seems that a full path to the key is needed.
+
 
 ### Admin User
 
