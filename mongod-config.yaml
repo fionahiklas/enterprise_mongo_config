@@ -23,7 +23,11 @@ net:
 security:
   authorization: enabled
   enableEncryption: true
-  encryptionKeyFile: /home/fiona/wd/dwp/cis/mongo_enterprise_ssl/enterprise_mongo_config/mongod-keyfile
-
+  kmip:
+    serverName: kmipserver
+    port: 5696
+    serverCAFile: "/home/fiona/wd/dwp/cis/mongo_enterprise_ssl/enterprise_mongo_ca/pki/ca.crt"
+    clientCertificateFile: "/home/fiona/wd/dwp/cis/mongo_enterprise_ssl/enterprise_mongo_config/kmipclient-key-and-cert.pem" 
+    keyIdentifier: "2"
 
   
